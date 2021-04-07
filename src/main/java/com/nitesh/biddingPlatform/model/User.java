@@ -1,5 +1,4 @@
 package com.nitesh.biddingPlatform.model;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,12 @@ public class User implements Cloneable {
     private String email;
     private String contactNo;
     private String gender;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "productOwner", cascade = CascadeType.ALL)
     List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "bidOwner", cascade = CascadeType.ALL)
+    List<ProductBids> bids = new ArrayList<>();
+
     /*@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Trade> tradeList;*/
 
@@ -29,15 +32,8 @@ public class User implements Cloneable {
 }
      */
 
-    public List<Product> getProducts() {
-        return products;
-    }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public User(int id, String firstName, String lastName, String email, String contactNo, String gender, List<Product> products) {
+    public User(int id, String firstName, String lastName, String email, String contactNo, String gender, List<Product> products, List<ProductBids> bids) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,6 +41,7 @@ public class User implements Cloneable {
         this.contactNo = contactNo;
         this.gender = gender;
         this.products = products;
+        this.bids = bids;
     }
 
     public User() {
@@ -99,6 +96,23 @@ public class User implements Cloneable {
         this.gender = gender;
     }
 
+    public List<ProductBids> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<ProductBids> bids) {
+        this.bids = bids;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -109,6 +123,7 @@ public class User implements Cloneable {
                 ", contactNo='" + contactNo + '\'' +
                 ", gender='" + gender + '\'' +
                 ", products=" + products +
+                ", bids=" + bids +
                 '}';
     }
 
@@ -117,7 +132,7 @@ public class User implements Cloneable {
         return super.clone();
     }
 
-    public User shallowCopy() throws CloneNotSupportedException {
+    public User shallowCopyForProducts() throws CloneNotSupportedException {
         User clonedUser = (User) this.clone();
         List<Product> products = this.getProducts();
         List<Product> newProductList = new ArrayList<>();
@@ -125,6 +140,17 @@ public class User implements Cloneable {
             newProductList.add(product.shallowCopy());
         }
         clonedUser.setProducts(newProductList);
+        return clonedUser;
+    }
+
+    public User shallowCopyForBids() throws CloneNotSupportedException{
+        User clonedUser = (User) this.clone();
+        List<ProductBids> bids = this.getBids();
+        List<ProductBids> bidsList = new ArrayList<>();
+        for (ProductBids allBids : bids) {
+            bidsList.add(allBids.shallowCopy());
+        }
+        clonedUser.setBids(bidsList);
         return clonedUser;
     }
 }

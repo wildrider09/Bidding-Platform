@@ -1,6 +1,8 @@
 package com.nitesh.biddingPlatform.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product implements Cloneable {
@@ -10,16 +12,23 @@ public class Product implements Cloneable {
     private String productName;
     private int minimum_bid;
     private String description;
+    private Boolean active;
     @ManyToOne
     @JoinColumn(name = "bidderId", nullable = false)
-    private User user;
+    private User productOwner;
 
-    public Product(int productId, String productName, int minimum_bid, String description, User user) {
+    @OneToMany(mappedBy = "productToBid", cascade = CascadeType.ALL)
+    List<ProductBids> bids = new ArrayList<>();
+
+
+    public Product(int productId, String productName, int minimum_bid, String description, Boolean active, User user, List<ProductBids> bids) {
         this.productId = productId;
         this.productName = productName;
         this.minimum_bid = minimum_bid;
         this.description = description;
-        this.user = user;
+        this.active = active;
+        this.productOwner = null;
+        this.bids = bids;
     }
 
     public Product() {
@@ -58,11 +67,28 @@ public class Product implements Cloneable {
     }
 
     public User getUser() {
-        return user;
+        return productOwner;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.productOwner = user;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+
+    public List<ProductBids> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<ProductBids> bids) {
+        this.bids = bids;
     }
 
     @Override
@@ -72,7 +98,9 @@ public class Product implements Cloneable {
                 ", productName='" + productName + '\'' +
                 ", minimum_bid=" + minimum_bid +
                 ", description='" + description + '\'' +
+                ", active=" + active +
                 ", user=" + null +
+                ", bids=" + bids +
                 '}';
     }
 
@@ -84,6 +112,16 @@ public class Product implements Cloneable {
     public Product shallowCopy() throws CloneNotSupportedException {
         Product cloneProduct = (Product) this.clone();
         cloneProduct.setUser(null);
+        List<ProductBids> bids = this.getBids();
+        List<ProductBids> bidsList = new ArrayList<>();
+        for (ProductBids allBids : bids) {
+            bidsList.add(allBids.shallowCopy());
+        }
+        cloneProduct.setBids(bidsList);
         return cloneProduct;
     }
+
+
+
+
 }

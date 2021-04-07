@@ -25,11 +25,13 @@ public class UserResource {
         List<User> response = new ArrayList<>();
         for (User user : users) {
             try {
-                response.add(user.shallowCopy());
+                user = user.shallowCopyForProducts();
+                response.add(user.shallowCopyForBids());
             } catch (CloneNotSupportedException e) {
 
             }
         }
+
         return response;
     }
 
@@ -37,7 +39,8 @@ public class UserResource {
     public User getUser(@PathVariable int userId) {
         User user = userService.getUser(userId);
         try {
-            return user.shallowCopy();
+            user = user.shallowCopyForProducts();
+            return(user.shallowCopyForBids());
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -48,7 +51,8 @@ public class UserResource {
     public User updateUser(@PathVariable int userId, @RequestBody User user){
         User updateduser = userService.updateuser(userId, user);
         try {
-            return updateduser.shallowCopy();
+            updateduser = updateduser.shallowCopyForProducts();
+            return(updateduser.shallowCopyForBids());
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

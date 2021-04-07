@@ -1,6 +1,7 @@
 package com.nitesh.biddingPlatform.services;
 
 import com.nitesh.biddingPlatform.dao.UserDao;
+import com.nitesh.biddingPlatform.exceptions.ResourceNotFoundException;
 import com.nitesh.biddingPlatform.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,15 +24,26 @@ public class UserService {
 
     public User getUser(int userId){
         Optional<User> optionalUser = userDao.findById(userId);
+        if(optionalUser.isEmpty()){
+            throw new ResourceNotFoundException("User Id does not exist");
+        }
         return optionalUser.get();
     }
 
     public User updateuser(int userId, User user){
+        if(userDao.findById(userId).isEmpty()){
+            throw new ResourceNotFoundException("User Id does not exist");
+        }
         user.setId(userId);
         return userDao.save(user);
     }
 
     public void deleteUser(int userId){
-        userDao.deleteById(userId);
+        try{
+            userDao.deleteById(userId);
+        }
+        catch (ResourceNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 }

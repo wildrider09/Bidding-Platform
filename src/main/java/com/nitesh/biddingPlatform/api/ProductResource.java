@@ -21,7 +21,7 @@ public class ProductResource {
         //return null;
         Product product = productService.addProduct(jsonNode);
         try {
-            return product.shallowCopy();
+            return(product.shallowCopy());
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -46,7 +46,7 @@ public class ProductResource {
     public Product getProduct(@PathVariable int productId) {
         Product product =  productService.getProduct(productId);
         try {
-            return product.shallowCopy();
+            return(product.shallowCopy());
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class ProductResource {
     public Product updateProduct(@PathVariable int productId, @RequestBody JsonNode jsonNode){
         Product product = productService.updateProduct(productId, jsonNode);
         try {
-            return product.shallowCopy();
+            return(product.shallowCopy());
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -67,6 +67,20 @@ public class ProductResource {
     @RequestMapping(value = "/{productId}",method=RequestMethod.DELETE)
     public @ResponseBody void deleteProduct(@PathVariable int productId){
         productService.deleteProduct(productId);
+    }
+
+    @GetMapping(value = "/productList/{bidderId}")
+    public List<Product> getProductsListByBidderId(@PathVariable int bidderId){
+        List<Product> products = productService.getProductsByUserId(bidderId);
+        List <Product> response = new ArrayList<>();
+        for(Product product : products){
+            try {
+                response.add(product.shallowCopy());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+        return response;
     }
 
 

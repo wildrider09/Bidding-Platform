@@ -7,6 +7,7 @@ import com.nitesh.biddingPlatform.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ProductService {
@@ -26,6 +27,7 @@ public class ProductService {
         product.setProductName(jsonNode.get("productName").asText());
         product.setMinimum_bid(jsonNode.get("minimum_bid").asInt());
         product.setDescription(jsonNode.get("description").asText());
+        product.setActive(jsonNode.get("active").asBoolean());
         int userId = jsonNode.get("bidderId").asInt();
         return userDao.findById(userId).map(user -> {
             product.setUser(user);
@@ -38,7 +40,11 @@ public class ProductService {
     }
 
     public Product getProduct(int productId){
-        return productDao.findById(productId).get();
+        Optional<Product> productOptional = productDao.findById(productId);
+        if(productOptional.isEmpty()){
+            throw new ResourceNotFoundException("Product Id does not exist");
+        }
+        return productOptional.get();
     }
 
     public Product updateProduct(int productId, JsonNode jsonNode){
@@ -47,6 +53,7 @@ public class ProductService {
         product.setProductName(jsonNode.get("productName").asText());
         product.setMinimum_bid(jsonNode.get("minimum_bid").asInt());
         product.setDescription(jsonNode.get("description").asText());
+        product.setActive(jsonNode.get("active").asBoolean());
         int userId = jsonNode.get("bidderId").asInt();
         return userDao.findById(userId).map(user -> {
             product.setUser(user);
@@ -56,6 +63,10 @@ public class ProductService {
 
     public void deleteProduct(int productId){
         productDao.deleteById(productId);
+    }
+
+    public List<Product> getProductsByUserId(int userId){
+        return productDao.getProductsListByBidderId(userId);
     }
 
 
