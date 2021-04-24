@@ -14,7 +14,7 @@ public class Product implements Cloneable {
     private String description;
     private Boolean active;
     @ManyToOne
-    @JoinColumn(name = "bidderId", nullable = false)
+    @JoinColumn(name = "ownerId", nullable = false)
     private User productOwner;
 
     @OneToMany(mappedBy = "productToBid", cascade = CascadeType.ALL)
@@ -111,7 +111,9 @@ public class Product implements Cloneable {
 
     public Product shallowCopy() throws CloneNotSupportedException {
         Product cloneProduct = (Product) this.clone();
-        cloneProduct.setUser(null);
+        User user = cloneProduct.getUser();
+        user.setProducts(null);
+        cloneProduct.setUser(user);
         List<ProductBids> bids = this.getBids();
         List<ProductBids> bidsList = new ArrayList<>();
         for (ProductBids allBids : bids) {

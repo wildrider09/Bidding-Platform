@@ -28,7 +28,7 @@ public class ProductService {
         product.setMinimum_bid(jsonNode.get("minimum_bid").asInt());
         product.setDescription(jsonNode.get("description").asText());
         product.setActive(jsonNode.get("active").asBoolean());
-        int userId = jsonNode.get("bidderId").asInt();
+        int userId = jsonNode.get("ownerId").asInt();
         return userDao.findById(userId).map(user -> {
             product.setUser(user);
             return productDao.save(product);
@@ -54,7 +54,7 @@ public class ProductService {
         product.setMinimum_bid(jsonNode.get("minimum_bid").asInt());
         product.setDescription(jsonNode.get("description").asText());
         product.setActive(jsonNode.get("active").asBoolean());
-        int userId = jsonNode.get("bidderId").asInt();
+        int userId = jsonNode.get("ownerId").asInt();
         return userDao.findById(userId).map(user -> {
             product.setUser(user);
             return productDao.save(product);

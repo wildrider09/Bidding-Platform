@@ -103,5 +103,10 @@ public class ProductBidsService {
         }
     }
 
+    public List<ProductBids> getBidsByProductId(int productId)
+    {
+        return bidDao.getBidsByProductId(productId);
+    }
+
 
 }

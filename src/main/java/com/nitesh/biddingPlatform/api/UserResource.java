@@ -1,5 +1,6 @@
 package com.nitesh.biddingPlatform.api;
 
+import com.nitesh.biddingPlatform.model.Product;
 import com.nitesh.biddingPlatform.model.User;
 import com.nitesh.biddingPlatform.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class UserResource {
         for (User user : users) {
             try {
                 user = user.shallowCopyForProducts();
-                response.add(user.shallowCopyForBids());
+                response.add(user);
             } catch (CloneNotSupportedException e) {
 
             }
@@ -63,4 +64,6 @@ public class UserResource {
     public @ResponseBody void deleteUser(@PathVariable int userId){
         userService.deleteUser(userId);
     }
+
+
 }

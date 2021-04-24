@@ -85,8 +85,14 @@ public class ProductBids implements Cloneable{
 
     public ProductBids shallowCopy() throws CloneNotSupportedException{
         ProductBids cloneBids = (ProductBids) this.clone();
-        cloneBids.setBidOwner(null);
-        cloneBids.setProductToBid(null);
+        User user = cloneBids.getBidOwner();
+        Product prod = cloneBids.getProductToBid();
+        prod.setUser(null);
+        prod.setBids(null);
+        user.setProducts(null);
+        user.setBids(null);
+        cloneBids.setBidOwner(user);
+        cloneBids.setProductToBid(prod);
         return cloneBids;
     }
 

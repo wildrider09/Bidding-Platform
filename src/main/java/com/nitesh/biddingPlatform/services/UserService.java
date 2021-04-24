@@ -2,6 +2,7 @@ package com.nitesh.biddingPlatform.services;
 
 import com.nitesh.biddingPlatform.dao.UserDao;
 import com.nitesh.biddingPlatform.exceptions.ResourceNotFoundException;
+import com.nitesh.biddingPlatform.model.Product;
 import com.nitesh.biddingPlatform.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,4 +47,6 @@ public class UserService {
             ex.printStackTrace();
         }
     }
+
+
 }

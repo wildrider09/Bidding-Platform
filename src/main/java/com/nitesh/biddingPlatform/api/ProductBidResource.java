@@ -72,4 +72,18 @@ public class ProductBidResource {
         bidsService.deleteBid(bidId);
     }
 
+    @GetMapping(value = "/product/{productId}")
+    public List<ProductBids> getBidsByProductId(@PathVariable int productId){
+        List<ProductBids> bids = bidsService.getBidsByProductId(productId);
+        List<ProductBids> response = new ArrayList<>();
+        for(ProductBids bid : bids){
+            try{
+                response.add(bid.shallowCopy());
+            } catch (CloneNotSupportedException e){
+                e.printStackTrace();
+            }
+        }
+        return response;
+    }
+
 }

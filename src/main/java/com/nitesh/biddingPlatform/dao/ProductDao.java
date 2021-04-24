@@ -11,6 +11,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     @Override
     List<Product> findAll();
 
-    @Query(value = "SELECT * FROM product where bidder_id = ?1", nativeQuery = true)
-    List<Product> getProductsListByBidderId(int bidderId);
+    @Query(value = "SELECT * FROM product where owner_id = ?1", nativeQuery = true)
+    List<Product> getProductsListByBidderId(int ownerId);
 }
