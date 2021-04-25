@@ -134,23 +134,15 @@ public class User implements Cloneable {
 
     public User shallowCopyForProducts() throws CloneNotSupportedException {
         User clonedUser = (User) this.clone();
-        List<Product> products = this.getProducts();
-        List<Product> newProductList = new ArrayList<>();
-        for (Product product : products) {
-            newProductList.add(product.shallowCopy());
-        }
-        clonedUser.setProducts(newProductList);
+        List<Product> products = null;
+        clonedUser.setProducts(products);
         return clonedUser;
     }
 
     public User shallowCopyForBids() throws CloneNotSupportedException{
         User clonedUser = (User) this.clone();
-        List<ProductBids> bids = this.getBids();
-        List<ProductBids> bidsList = new ArrayList<>();
-        for (ProductBids allBids : bids) {
-            bidsList.add(allBids.shallowCopy());
-        }
-        clonedUser.setBids(bidsList);
+        List<ProductBids> bids = null;
+        clonedUser.setBids(bids);
         return clonedUser;
     }
 }

@@ -1,5 +1,6 @@
 package com.nitesh.biddingPlatform.api;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nitesh.biddingPlatform.model.Product;
 import com.nitesh.biddingPlatform.model.User;
 import com.nitesh.biddingPlatform.services.UserService;
@@ -19,7 +20,6 @@ public class UserResource {
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
-
     @GetMapping
     public List<User> getUsers() {
         List<User> users = userService.getUsers();
@@ -27,9 +27,12 @@ public class UserResource {
         for (User user : users) {
             try {
                 user = user.shallowCopyForProducts();
-                response.add(user);
+                response.add(user.shallowCopyForBids());
             } catch (CloneNotSupportedException e) {
 
+            }
+            catch(Exception e){
+                e.printStackTrace();
             }
         }
 

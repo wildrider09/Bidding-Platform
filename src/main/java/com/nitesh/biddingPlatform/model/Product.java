@@ -113,13 +113,10 @@ public class Product implements Cloneable {
         Product cloneProduct = (Product) this.clone();
         User user = cloneProduct.getUser();
         user.setProducts(null);
+        user.setBids(null);
         cloneProduct.setUser(user);
-        List<ProductBids> bids = this.getBids();
-        List<ProductBids> bidsList = new ArrayList<>();
-        for (ProductBids allBids : bids) {
-            bidsList.add(allBids.shallowCopy());
-        }
-        cloneProduct.setBids(bidsList);
+        List<ProductBids> bids = null;
+        cloneProduct.setBids(bids);
         return cloneProduct;
     }
 
