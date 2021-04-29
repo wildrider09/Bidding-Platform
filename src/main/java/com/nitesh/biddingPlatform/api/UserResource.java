@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "user")
 public class UserResource {
@@ -18,6 +19,7 @@ public class UserResource {
 
     @PostMapping
     public User addUser(@RequestBody User user) {
+        System.out.println("User Saved");
         return userService.addUser(user);
     }
     @GetMapping
@@ -27,7 +29,7 @@ public class UserResource {
         for (User user : users) {
             try {
                 user = user.shallowCopyForProducts();
-                response.add(user.shallowCopyForBids());
+                response.add(user);
             } catch (CloneNotSupportedException e) {
 
             }
@@ -44,7 +46,7 @@ public class UserResource {
         User user = userService.getUser(userId);
         try {
             user = user.shallowCopyForProducts();
-            return(user.shallowCopyForBids());
+            return(user);
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -56,7 +58,7 @@ public class UserResource {
         User updateduser = userService.updateuser(userId, user);
         try {
             updateduser = updateduser.shallowCopyForProducts();
-            return(updateduser.shallowCopyForBids());
+            return(updateduser);
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }

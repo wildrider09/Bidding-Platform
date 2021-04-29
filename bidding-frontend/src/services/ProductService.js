@@ -12,6 +12,10 @@ class ProductService{
     getProductById(id){
         return axios.get(BASE_URL+'/'+id);
     }
+
+    updateProduct(id, product){
+        return axios.put(BASE_URL+'/'+id, product);
+    }
 }
 
 export default new ProductService()

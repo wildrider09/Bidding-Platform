@@ -31,6 +31,10 @@ class ProductDetailComponent extends Component {
         })
     }
 
+    updateProduct(id){
+        this.props.history.push(`/update-product/${id}`)
+    }
+
     render() {
         return (
             <div>
@@ -45,6 +49,7 @@ class ProductDetailComponent extends Component {
                                             <p>Minimum Bid: {this.state.minimum_bid}</p>
                                             <p>Owner of the Product: {this.state.owner.firstName}</p>
                                             <p>Live: {this.state.active.toString()}</p>
+                                            <button className="btn btn-success" onClick = {() => this.updateProduct(this.state.id)}>Update Product Details</button>
                                         </div>
                             </Col>
                             <Col xs = {6}>
@@ -55,6 +60,7 @@ class ProductDetailComponent extends Component {
                                                 <p>Email: {this.state.owner.email}</p>
                                                 <p>Contact Number: {this.state.owner.contactNo}</p>
                                 </div>
+                                
                             </Col>
                         </Row>
                     </Container>

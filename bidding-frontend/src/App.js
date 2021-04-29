@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import RegisterComponent from './components/RegisterComponent';
 import AddProductComponent from './components/AddProductComponent';
 import ProductDetailComponent from './components/ProductDetailComponent';
+import UpdateProductComponent from './components/UpdateProductComponent';
 function App() {
   return (
     <div>
@@ -17,8 +18,9 @@ function App() {
               <Route path="/register" component={RegisterComponent}></Route>
               <Route path="/add-product" component={AddProductComponent}></Route>
               <Route path="/product-detail/:id" component={ProductDetailComponent}></Route>
+              <Route path="/update-product/:id" component={UpdateProductComponent}></Route>
             </Switch>         
-        </div>
+          </div>
       </Router>
     </div>
   );

@@ -115,7 +115,17 @@ public class Product implements Cloneable {
         user.setProducts(null);
         user.setBids(null);
         cloneProduct.setUser(user);
-        List<ProductBids> bids = null;
+        List<ProductBids> bids = cloneProduct.getBids();
+        for(ProductBids bid : bids){
+            Product product = bid.getProductToBid();
+            product.setUser(null);
+            product.setBids(null);
+            bid.setProductToBid(product);
+            User bidOwner = bid.getBidOwner();
+            bidOwner.setBids(null);
+            bidOwner.setProducts(null);
+            bid.setBidOwner(bidOwner);
+        }
         cloneProduct.setBids(bids);
         return cloneProduct;
     }
