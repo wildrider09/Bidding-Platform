@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
+import BidService from '../services/BidService';
 import ProductService from '../services/ProductService';
 
 class ProductDetailComponent extends Component {
@@ -13,7 +14,9 @@ class ProductDetailComponent extends Component {
             minimum_bid: '',
             active: '',
             owner: '',
-            bids : []
+            bids : [],
+            active: "Selected",
+            inactive: ""
          }
     }
 
@@ -33,6 +36,19 @@ class ProductDetailComponent extends Component {
 
     updateProduct(id){
         this.props.history.push(`/update-product/${id}`)
+    }
+
+    selectBid(id, amount, bidOwnerId){
+        let newBid = {
+            bidAmount: amount,
+            selected : true,
+            bidProductId: this.state.id,
+            bidOwnerId: bidOwnerId
+        }
+        BidService.selectBid(id, newBid).then((res) => {
+            alert("Bid Selected Successfully");
+            window.location.reload();
+        });
     }
 
     render() {
@@ -72,18 +88,22 @@ class ProductDetailComponent extends Component {
                                 <th>Contact Number</th>
                                 <th>Email Address</th>
                                 <th>Bid Amount</th>
+                                <th>Selected</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                             {
-                                this.state.bids.map(
+                               this.state.bids.map(
                                     bid => 
                                     <tr>
                                         <td>{ bid.bidOwner.firstName} { bid.bidOwner.lastName }</td>
                                         <td>{ bid.bidOwner.contactNo }</td>
                                         <td>{ bid.bidOwner.email }</td>
                                         <td>{ bid.bidAmount }</td>
+                                        <td style={{color:"blue"}}>{ bid.selected.toString() }</td>
+                                        <td><button className="btn btn-info" onClick = {() => this.selectBid(bid.bidId, bid.bidAmount,bid.bidOwner.id)}>Select Bid</button></td>
                                     </tr>
                                 )
                             }
