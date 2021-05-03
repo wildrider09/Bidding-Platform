@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  backend:
+          image: niteshjan/spring-backend-bp      
+          build: .
+          ports:
+                 - "9090:9090"
+  frontend:
+         image: niteshjan/react-backend-bp
+         build: ./bidding-frontend/
+         ports:
+                 - "3000:3000"
+
