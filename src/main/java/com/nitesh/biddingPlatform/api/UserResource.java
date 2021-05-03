@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "user")
+@RequestMapping("user")
 public class UserResource {
     @Autowired
     private UserService userService;
@@ -68,6 +68,11 @@ public class UserResource {
     @RequestMapping(value = "/{userId}",method=RequestMethod.DELETE)
     public @ResponseBody void deleteUser(@PathVariable int userId){
         userService.deleteUser(userId);
+    }
+
+    @GetMapping(value = "/hello")
+    public String hello(@RequestParam(name = "name", defaultValue = "World") String name) {
+        return String.format("Hello, %s", name);
     }
 
 

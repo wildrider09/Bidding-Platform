@@ -41,7 +41,7 @@ public class ProductService {
 
     public Product getProduct(int productId){
         Optional<Product> productOptional = productDao.findById(productId);
-        if(productOptional.isEmpty()){
+        if(!productOptional.isPresent()){
             throw new ResourceNotFoundException("Product Id does not exist");
         }
         return productOptional.get();

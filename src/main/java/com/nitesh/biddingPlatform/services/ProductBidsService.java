@@ -29,14 +29,14 @@ public class ProductBidsService {
         //to get the product object
         int productId = jsonNode.get("bidProductId").asInt();
         Optional<Product> optionalProduct = productDao.findById(productId);
-        if(optionalProduct.isEmpty()){
+        if(!optionalProduct.isPresent()){
             throw new ResourceNotFoundException("Product with such product ID does not exist");
         }
         Product prod = optionalProduct.get();
         //to get the user object
         int userId = jsonNode.get("bidOwnerId").asInt();
         Optional<User> optionalUser = userDao.findById(userId);
-        if(optionalUser.isEmpty()){
+        if(!optionalUser.isPresent()){
             throw new ResourceNotFoundException("User with such user ID does not exist");
         }
         User bidder = optionalUser.get();
@@ -58,7 +58,7 @@ public class ProductBidsService {
     public ProductBids getBid(int bidId){
         Optional<ProductBids> optionalProductBid = bidDao
                 .findById(bidId);
-        if(optionalProductBid.isEmpty()){
+        if(!optionalProductBid.isPresent()){
             throw new ResourceNotFoundException("Bid Id does not exist");
         }
         return optionalProductBid.get();
@@ -72,14 +72,14 @@ public class ProductBidsService {
         //to get the product object
         int productId = jsonNode.get("bidProductId").asInt();
         Optional<Product> optionalProduct = productDao.findById(productId);
-        if(optionalProduct.isEmpty()){
+        if(!optionalProduct.isPresent()){
             throw new ResourceNotFoundException("Product with such product ID does not exist");
         }
         Product prod = optionalProduct.get();
         //to get the user object
         int userId = jsonNode.get("bidOwnerId").asInt();
         Optional<User> optionalUser = userDao.findById(userId);
-        if(optionalUser.isEmpty()){
+        if(!optionalUser.isPresent()){
             throw new ResourceNotFoundException("User with such user ID does not exist");
         }
         User bidder = optionalUser.get();
