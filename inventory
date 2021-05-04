@@ -1,2 +1,2 @@
 [virtual]
-168.62.161.35 ansible_user=nitesh
+168.62.161.35 ansible_user=nitesh ansible_python_interpreter=/usr/bin/python3
