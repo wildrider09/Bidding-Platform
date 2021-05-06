@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import RegisterService from '../services/RegisterService';
-
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
+import { createMuiTheme } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Footer from './footer'
+import image from '../Register.png'
 class RegisterComponent extends Component {
     constructor(props){
         super(props);
@@ -61,13 +69,34 @@ class RegisterComponent extends Component {
         this.props.history.push('/products');
     }
 
+    
+
     render() {
+        
+        const theme = createMuiTheme({
+            palette: {
+              primary: {
+                // Purple and green play nicely together.
+                main: '#388e3c',
+              },
+              secondary: {
+                // This is green.A700 as hex.
+                main: '#d32f2f',
+              },
+            },
+          });
         return (
-            <div>
+            <div className='bg-image' style={{
+                backgroundImage:`url(${image})`,
+                width: 'relative'
+                
+            }}>
                 <div className="container">
                     <div className="row">
                         <div className = "card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Register User</h3>
+                            <h3 className="text-center"><b>Register User</b></h3>
+                            <Divider variant="middle" />
+                            <br></br>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
@@ -100,13 +129,14 @@ class RegisterComponent extends Component {
                                             onChange={this.changeGenderHandler}/> Female
                                     </div>
 
-                                    <button className="btn btn-success" onClick={this.saveUser}>Save</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                    <Button startIcon={<SaveIcon/>} variant='contained'  color='primary' className="btn btn-success" onClick={this.saveUser}>Save</Button>
+                                    <Button startIcon={<CancelIcon/>} variant='contained'  color='secondary' className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
         );
     }

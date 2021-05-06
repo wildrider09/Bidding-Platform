@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import ProductService from '../services/ProductService';
 import { Container, Row, Col } from 'react-grid-system';
-
+import Button from '@material-ui/core/Button'
+import PersonAdd from '@material-ui/icons/PersonAdd';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import Chip from '@material-ui/core/Chip';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import image from '../Home.png'
+import { withWidth } from '@material-ui/core';
+import GavelRoundedIcon from '@material-ui/icons/GavelRounded';
+import {green} from '@material-ui/core/colors'
+import { createMuiTheme } from '@material-ui/core/styles';
+import {  withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 class ListProductsComponent extends Component {
     constructor(props){
@@ -43,12 +54,29 @@ class ListProductsComponent extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <h2 className="text-center"> Products List </h2>
+        
+        const theme = createMuiTheme({
+            palette: {
+              primary: green
+    
+            },
+          });
+
+        return (  
+              
+                 
+            <div className='bg-image' style={{
+                backgroundImage:`url(${image})`,
+                width: 'relative'
+                
+            }}>
+                
+                <h2 className="text-center"> <b>Products List</b> </h2>
+                <Divider variant="middle" />
+                <br></br>
                 <div className="row">
-                    <button className="btn btn-primary" id="registerUser" onClick={this.registerUser}>Register User</button>                
-                    <button className="btn btn-primary" id="addProduct" onClick={this.addProduct}>Add Product</button>
+                    <Button endIcon={<PersonAdd/>} variant='contained' color='secondary' className="btn btn-primary" id="registerUser" onClick={this.registerUser}>Register User</Button>                
+                    <Button endIcon={<AddBoxIcon/>} variant='contained' color='secondary' className="btn btn-primary" id="addProduct" onClick={this.addProduct}>Add Product</Button>
                 </div>
                 <div className = "products">
                     <Container style={{margin: "20px"}}>
@@ -66,7 +94,12 @@ class ListProductsComponent extends Component {
                                                 <p>Owner of the Product: {product.user.firstName}</p>
                                                 <p>Live: {product.active.toString()}</p>
                                             </div>                                            
-                                            <center><button className="btn btn-success" onClick = {() => this.bidProduct(product.productId, product.active)}>Bid</button></center> 
+                                            <center><Button variant='contained' style={{
+        borderRadius: 7,
+        backgroundColor: "#27c72f",
+        padding: "5px 6px",
+        fontSize: "15px"
+    }} startIcon={<GavelRoundedIcon/>} className="btn btn-success" onClick = {() => this.bidProduct(product.productId, product.active)}>Bid</Button></center> 
                                         </div>
                                     </Col>                                 
                                 )
@@ -75,6 +108,7 @@ class ListProductsComponent extends Component {
                     </Container>
                 </div>
             </div>
+            // </div>
         );
     }
 }

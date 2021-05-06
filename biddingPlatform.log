@@ -1,0 +1,45 @@
+2021-05-06 18:22:04.039  INFO 86403 --- [main] c.n.b.BiddingPlatformApplication         : Starting BiddingPlatformApplication using Java 11.0.10 on nitesh-HP-Laptop-14s-er0xxx with PID 86403 (/home/nitesh/Sem 2/SPE/biddingPlatform/Bidding-Platform/target/classes started by nitesh in /home/nitesh/Sem 2/SPE/biddingPlatform/Bidding-Platform)
+2021-05-06 18:22:04.050  INFO 86403 --- [main] c.n.b.BiddingPlatformApplication         : No active profile set, falling back to default profiles: default
+2021-05-06 18:22:07.373  INFO 86403 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-05-06 18:22:07.640  INFO 86403 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 220 ms. Found 3 JPA repository interfaces.
+2021-05-06 18:22:08.472  INFO 86403 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9090 (http)
+2021-05-06 18:22:08.477  INFO 86403 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-06 18:22:08.477  INFO 86403 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.44]
+2021-05-06 18:22:08.757  INFO 86403 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-06 18:22:08.757  INFO 86403 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4539 ms
+2021-05-06 18:22:08.870  INFO 86403 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-06 18:22:17.653  INFO 86403 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-06 18:22:17.660  INFO 86403 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://spe.mysql.database.azure.com:3306/biddb'
+2021-05-06 18:22:18.007  INFO 86403 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-05-06 18:22:18.138  INFO 86403 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.29.Final
+2021-05-06 18:22:18.458  INFO 86403 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-05-06 18:22:19.492  INFO 86403 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2021-05-06 18:22:26.661  INFO 86403 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-05-06 18:22:26.709  INFO 86403 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-06 18:22:27.470  WARN 86403 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-05-06 18:22:27.593  INFO 86403 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-06 18:22:27.873  INFO 86403 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9090 (http) with context path ''
+2021-05-06 18:22:27.881  INFO 86403 --- [main] c.n.b.BiddingPlatformApplication         : Started BiddingPlatformApplication in 27.719 seconds (JVM running for 38.827)
+2021-05-06 18:22:48.753  INFO 86403 --- [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-06 18:22:48.754  INFO 86403 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-06 18:22:48.755  INFO 86403 --- [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-05-06 18:22:53.899  INFO 86403 --- [http-nio-9090-exec-1] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:23:12.842  INFO 86403 --- [http-nio-9090-exec-5] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:27:42.590  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@796a5955 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.594  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4a6c06c5 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.596  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@61e74e2c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.598  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@70de856d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.600  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@64bfed7 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.603  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2cbb8af5 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.606  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@77f62760 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.608  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7387311e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.610  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2a63d4ff (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:27:42.613  WARN 86403 --- [http-nio-9090-exec-7] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5aff0f64 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2021-05-06 18:28:05.503  INFO 86403 --- [http-nio-9090-exec-3] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:28:24.755  INFO 86403 --- [http-nio-9090-exec-7] c.n.biddingPlatform.api.UserResource     : list of users fetched from sql database!!!
+2021-05-06 18:28:29.874  INFO 86403 --- [http-nio-9090-exec-10] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:28:39.909  INFO 86403 --- [http-nio-9090-exec-2] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:28:53.836  INFO 86403 --- [http-nio-9090-exec-5] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:29:08.991  INFO 86403 --- [http-nio-9090-exec-7] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:29:31.705  INFO 86403 --- [http-nio-9090-exec-4] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!
+2021-05-06 18:30:47.806  INFO 86403 --- [http-nio-9090-exec-8] c.n.biddingPlatform.api.ProductResource  : getting list of products from sql database!!!

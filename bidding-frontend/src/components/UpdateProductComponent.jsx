@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import ProductService from '../services/ProductService';
+import image from '../Product.png'
+import Button from '@material-ui/core/Button'
+import KeyboardArrowUpTwoToneIcon from '@material-ui/icons/KeyboardArrowUpTwoTone';
+
+import ClearIcon from '@material-ui/icons/Clear';
 
 class UpdateProductComponent extends Component {
     constructor(props){
@@ -66,8 +71,13 @@ class UpdateProductComponent extends Component {
 
     render() {
         return (
-            <div>
-                <div className="container">
+            <div className='bg-image' style={{
+                backgroundImage:`url(${image})`,
+                width: '100%',
+                
+                
+            }}>
+                <div className="container" style={{margin: "20px", paddingTop:'10px'}}>
                     <div className="row">
                         <div className = "card col-md-6 offset-md-3 offset-md-3">
                             <h3 className="text-center">Add Product</h3>
@@ -88,10 +98,10 @@ class UpdateProductComponent extends Component {
                                         <input type="number" placeholder="Minimum Bid" name="bid" className="form-control"
                                             value={this.state.minimum_bid} onChange={this.changeBidHandler} />
                                     </div>
-                                    <button className="btn btn-danger" onClick={this.changeActiveHandler} style={{margin: "10px"}}>Deactivate Product</button>
+                                    <Button color='primary' className="btn btn-danger" variant='contained' endIcon={<KeyboardArrowUpTwoToneIcon/>} onClick={this.changeActiveHandler} style={{margin: "10px"}}>Deactivate Product</Button>
                                     <br/>
-                                    <button className="btn btn-success" onClick={this.updateProduct}>Uodate Product</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                    <button className="btn btn-success" onClick={this.updateProduct}>Update Product</button>
+                                    <Button color='secondary' variant='contained' startIcon={<ClearIcon/>} className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
                                 </form>
                             </div>
                         </div>

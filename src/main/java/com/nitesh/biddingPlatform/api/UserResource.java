@@ -1,11 +1,14 @@
 package com.nitesh.biddingPlatform.api;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.nitesh.biddingPlatform.BiddingPlatformApplication;
 import com.nitesh.biddingPlatform.model.Product;
 import com.nitesh.biddingPlatform.model.User;
 import com.nitesh.biddingPlatform.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +17,17 @@ import java.util.List;
 @RestController
 @RequestMapping("user")
 public class UserResource {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserResource.class);
+
     @Autowired
     private UserService userService;
 
     @PostMapping
     public User addUser(@RequestBody User user) {
         System.out.println("User Saved");
+        logger.info("Adding new user data to sql database!!!");
+
         return userService.addUser(user);
     }
     @GetMapping
@@ -30,6 +38,7 @@ public class UserResource {
             try {
                 user = user.shallowCopyForProducts();
                 response.add(user);
+
             } catch (CloneNotSupportedException e) {
 
             }
@@ -37,6 +46,7 @@ public class UserResource {
                 e.printStackTrace();
             }
         }
+        logger.info("list of users fetched from sql database!!!");
 
         return response;
     }
@@ -50,6 +60,8 @@ public class UserResource {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+        logger.info("single user details fetched from sql database!!!");
+
         return null;
     }
 
@@ -62,12 +74,16 @@ public class UserResource {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+        logger.info("updating user details in sql database!!!");
+
         return null;
     }
 
     @RequestMapping(value = "/{userId}",method=RequestMethod.DELETE)
     public @ResponseBody void deleteUser(@PathVariable int userId){
         userService.deleteUser(userId);
+        logger.info("deleting user details from sql database!!!");
+
     }
 
     @GetMapping(value = "/hello")

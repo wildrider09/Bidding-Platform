@@ -3,6 +3,15 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import UserService from '../services/UserService';
 import ProductService from '../services/ProductService';
+import Button from '@material-ui/core/Button'
+import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
+import { createMuiTheme } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import image from '../Product.png'
+import { Height } from '@material-ui/icons';
 
 class AddProductComponent extends Component {
 
@@ -18,11 +27,14 @@ class AddProductComponent extends Component {
             ownerId: ''
         }
 
+        
+
         this.changeBidHandler = this.changeBidHandler.bind(this);
         this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this);
         this.changeOwnerHandler = this.changeOwnerHandler.bind(this);
         this.changeProductNameHandler = this.changeProductNameHandler.bind(this);
     }
+    
 
     componentDidMount(){
         UserService.getUsers().then((res) => {
@@ -66,14 +78,35 @@ class AddProductComponent extends Component {
     }
 
     render() {
+        const theme = createMuiTheme({
+            palette: {
+              primary: {
+                // Purple and green play nicely together.
+                main: '#388e3c',
+              },
+              secondary: {
+                // This is green.A700 as hex.
+                main: '#d32f2f',
+              },
+            },
+          });
         return (
-            <div>
+            <div className='bg-image' style={{
+                backgroundImage:`url(${image})`,
+                width: '100%',
+                
+                
+            }}>
                 <div className="container">
                     <div className="row">
                         <div className = "card col-md-6 offset-md-3 offset-md-3">
-                            <h3 className="text-center">Add Product</h3>
+                            <h3 className="text-center"><b>Add Product</b></h3>
+                            <Divider variant="middle" />
+                            <br></br>
                             <div className="card-body">
                                 <form>
+                                    
+                                    <p><b>Add your new product here !</b></p>
                                     <div className="form-group">
                                         <label>Product Name:</label>
                                         <input placeholder="Product Name" name="productName" className="form-control"
@@ -89,6 +122,8 @@ class AddProductComponent extends Component {
                                         <input type="number" placeholder="Minimum Bid" name="bid" className="form-control"
                                             value={this.state.minimum_bid} onChange={this.changeBidHandler} />
                                     </div>
+                                    <br/>
+                                    <br/>
                                     <DropdownButton
                                     alignRight
                                     title="Owner ID "
@@ -102,9 +137,12 @@ class AddProductComponent extends Component {
                                                 <Dropdown.Item eventKey={user.id}>{user.id}</Dropdown.Item>
                                             )
                                         }
-                                    </DropdownButton>
-                                    <button className="btn btn-success" onClick={this.saveUser}>Save</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                
+                                    </DropdownButton><br/>
+
+                                    <Button startIcon={<SaveIcon/>} variant='contained' color='primary' className="btn btn-success" onClick={this.saveUser}>Save</Button>
+                                    <Button startIcon={<CancelIcon/>} variant='contained' color='secondary' className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
+                                        <br/>
                                 </form>
                             </div>
                         </div>

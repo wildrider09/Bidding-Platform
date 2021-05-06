@@ -3,15 +3,23 @@ package com.nitesh.biddingPlatform.api;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.nitesh.biddingPlatform.model.Product;
 import com.nitesh.biddingPlatform.services.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.ArrayList;
 import java.util.List;
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "product")
 public class ProductResource {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductResource.class);
+
     @Autowired
     private ProductService productService;
 
@@ -25,6 +33,8 @@ public class ProductResource {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+        logger.info("adding new product in sql database!!!");
+
         return null;
     }
 
@@ -39,7 +49,9 @@ public class ProductResource {
                 e.printStackTrace();
             }
         }
-    return response;
+        logger.info("getting list of products from sql database!!!");
+
+        return response;
     }
 
     @GetMapping(value = "{productId}")
@@ -50,6 +62,9 @@ public class ProductResource {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+
+        logger.info("getting single product by productid from sql database!!!");
+
         return null;
     }
 
@@ -61,6 +76,8 @@ public class ProductResource {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
+        logger.info("updating an existing product in sql database!!!");
+
         return null;
     }
 
@@ -80,6 +97,8 @@ public class ProductResource {
                 e.printStackTrace();
             }
         }
+        logger.info("deleting an existing product in sql database!!!");
+
         return response;
     }
 

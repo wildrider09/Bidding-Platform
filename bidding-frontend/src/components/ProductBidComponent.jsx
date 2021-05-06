@@ -5,7 +5,8 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import ProductService from '../services/ProductService';
 import { Container, Row, Col } from 'react-grid-system';
 import BidService from '../services/BidService';
-
+// import image from '../Product.png'
+import image from '../Register.png'
 class ProductBidComponent extends Component {
     constructor(props){
         super(props);
@@ -79,11 +80,15 @@ class ProductBidComponent extends Component {
 
     render() {
         return (
-            <div>
-                <div className = "products">
+            <div  style={{
+                backgroundImage: `url(${image})`,
+           
+
+            }}>
+                <div className = "products" style={{paddingTop:'10px', paddingBottom:'20px'}}>
                     <Container style={{margin: "20px"}}>
                         <Row>                                     
-                                    <Col xs = {6}>
+                                    <Col xs = {15}>
                                         <div className="shadow p-3 mb-5 bg-white rounded">
                                             <div>
                                                 <p>Product Name: {this.state.productName}</p>
@@ -94,8 +99,10 @@ class ProductBidComponent extends Component {
                                                 <p>Live: {this.state.active.toString()}</p>
                                             </div>                                            
                                         </div>
-                                    </Col>  
-                                    <Col xs = {6}>
+                                </Col>
+                                </Row>
+                                <Row xs ={15}> 
+                                <Col xs = {12}>
                                         <div className = "card col-md-6 offset-md-3 offset-md-3">
                                             <h3 className="text-center">Bid on Product</h3>
                                             <div className="card-body">

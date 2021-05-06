@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-grid-system';
 import BidService from '../services/BidService';
 import ProductService from '../services/ProductService';
+import image from '../Product.png'
+import Button from '@material-ui/core/Button' 
+import GavelTwoToneIcon from '@material-ui/icons/GavelTwoTone';
+import KeyboardArrowUpTwoToneIcon from '@material-ui/icons/KeyboardArrowUpTwoTone';
 
 class ProductDetailComponent extends Component {
     constructor(props){
@@ -45,17 +49,31 @@ class ProductDetailComponent extends Component {
             bidProductId: this.state.id,
             bidOwnerId: bidOwnerId
         }
+         let product = {
+            productName: this.state.productName,
+            description: this.state.description,
+            minimum_bid: this.state.minimum_bid,
+            active: false,
+            ownerId: this.state.owner.id
+        }
         BidService.selectBid(id, newBid).then((res) => {
             alert("Bid Selected Successfully");
-            window.location.reload();
+        });
+        ProductService.updateProduct(this.state.id, product).then(res => {
+            this.props.history.push('/products');
         });
     }
 
     render() {
         return (
-            <div>
+            <div className='bg-image' style={{
+                backgroundImage:`url(${image})`,
+                width: '100%',
+                
+                
+            }}>
                 <div className="product-details">
-                    <Container style={{margin: "20px"}}>
+                    <Container style={{margin: "20px", paddingTop:'10px'}}>
                         <Row>
                             <Col xs = {6}>                                
                                  <div className="shadow p-3 mb-5 bg-white rounded">
@@ -65,7 +83,7 @@ class ProductDetailComponent extends Component {
                                             <p>Minimum Bid: {this.state.minimum_bid}</p>
                                             <p>Owner of the Product: {this.state.owner.firstName}</p>
                                             <p>Live: {this.state.active.toString()}</p>
-                                            <button className="btn btn-success" onClick = {() => this.updateProduct(this.state.id)}>Update Product Details</button>
+                                            <Button variant='contained' color='secondary' endIcon={<KeyboardArrowUpTwoToneIcon/>} className="btn btn-success" onClick = {() => this.updateProduct(this.state.id)}>Update Product Details</Button>
                                         </div>
                             </Col>
                             <Col xs = {6}>
@@ -103,7 +121,7 @@ class ProductDetailComponent extends Component {
                                         <td>{ bid.bidOwner.email }</td>
                                         <td>{ bid.bidAmount }</td>
                                         <td style={{color:"blue"}}>{ bid.selected.toString() }</td>
-                                        <td><button className="btn btn-info" onClick = {() => this.selectBid(bid.bidId, bid.bidAmount,bid.bidOwner.id)}>Select Bid</button></td>
+                                        <td><Button variant='contained' color='primary' startIcon={<GavelTwoToneIcon/>}className="btn btn-info" onClick = {() => this.selectBid(bid.bidId, bid.bidAmount,bid.bidOwner.id)}>Select Bid</Button></td>
                                     </tr>
                                 )
                             }

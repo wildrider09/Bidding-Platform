@@ -1,3 +1,17 @@
+.fixed-header, .fixed-footer{
+  width: 100%;
+  position: fixed;        
+  background: #333;
+  padding: 10px 0;
+  color: #fff;
+}
+.fixed-header{
+  top: 0;
+}
+.fixed-footer{
+  bottom: 0;
+}    
+
 .App {
   text-align: center;
 }
@@ -50,7 +64,14 @@
 
 /* Add some padding inside the card container */
 .container {
-  padding: 2px 16px;
+  /* padding: 2px 16px; */
+  background:scroll;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  scroll-behavior: smooth;
 }
 
 #addProduct{
