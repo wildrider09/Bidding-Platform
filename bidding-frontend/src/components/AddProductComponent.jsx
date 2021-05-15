@@ -10,8 +10,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import image from '../Product.png'
+import image from '../Product.png' 
 import { Height } from '@material-ui/icons';
+
 
 class AddProductComponent extends Component {
 
